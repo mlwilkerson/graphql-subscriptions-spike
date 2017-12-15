@@ -67,6 +67,7 @@ GEM
     ffi (1.9.18)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    graphql (1.7.7)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
@@ -178,6 +179,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  graphql
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   puma (~> 3.7)

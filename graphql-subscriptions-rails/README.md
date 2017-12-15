@@ -1,24 +1,6 @@
-# README
+# GraphQL Subscriptions Spike Rails Server
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This Rails 5.1.4 server running on Ruby 2.4.2 demonstrates the use of ActionCable 
+for implementing a GraphQL subscriptions system.
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
