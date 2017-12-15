@@ -5,7 +5,8 @@ for implementing a GraphQL subscriptions system.
 
 # Redis server
 
-Start a Redis server on port 6379: `docker run --name graphql-subscriptions-redis -d redis`
+Start a Redis 3.x server on port 6379: `docker run --name graphql-subscriptions-redis -d redis:3`. Note that as of 
+Rails 5.1.4, only Redis 3.x will work; Redis 4.x will not work.
 
 You should see the following using `docker ps -a`:
 
@@ -16,5 +17,5 @@ CONTAINER ID  IMAGE  COMMAND                 CREATED        STATUS        PORTS 
 
 If you want to tail the Redis logs in the Docker container, use: `docker logs -f graphql-subscriptions-redis`
 
-
+To stop the detached Redis server Docker container, use: `docker stop graphql-subscriptions-redis` 
 
