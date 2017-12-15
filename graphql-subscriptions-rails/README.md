@@ -13,3 +13,8 @@ You should see the following using `docker ps -a`:
 CONTAINER ID  IMAGE  COMMAND                 CREATED        STATUS        PORTS     NAMES
 6976eac8aed5  redis  "docker-entrypoint..."  2 seconds ago  Up 2 seconds  6379/tcp  graphql-subscriptions-redis
 ```
+
+If you want to tail the Redis logs in the Docker container, use: `docker logs -f graphql-subscriptions-redis`
+
+
+
