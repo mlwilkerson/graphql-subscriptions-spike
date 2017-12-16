@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'graphql'
 gem 'redis', '~> 3.0'
+gem 'abstract_method', '~> 1.2', '>= 1.2.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
