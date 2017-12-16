@@ -1,11 +1,14 @@
-Types::MutationType = GraphQL::ObjectType.define do
-  name "Mutation"
+# frozen_string_literal: true
 
-  # TODO: Remove me
-  field :createPost, types.String do
-    description "An example field added by the generator"
-    resolve ->(obj, args, ctx) {
-      "Hello World!"
-    }
-  end
+Types::MutationType = GraphQL::ObjectType.define do
+    name 'Mutation'
+
+    field :createPost do
+        type Types::PostType
+        argument :title, !types.String, 'The blog post title.'
+        argument :body, !types.String, 'The blog post body.'
+        description 'Create a new blog post.'
+
+        resolve Mutations::CreatePost.new
+    end
 end
