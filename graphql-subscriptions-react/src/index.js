@@ -10,11 +10,9 @@ import {HttpLink} from 'apollo-link-http';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import ActionCable from 'actioncable';
 import ActionCableLink from 'graphql-ruby-client/subscriptions/ActionCableLink';
-import {gql} from "apollo-client-preset";
 
-const cable = ActionCable.createConsumer()
+const cable = ActionCable.createConsumer('ws://localhost:3000/graphql');
 const cableLink = new ActionCableLink({cable});
-
 const httpLink = new HttpLink({uri: 'http://localhost:3000/graphql'});
 
 const hasSubscriptionOperation = ({query: {definitions}}) => {
@@ -29,9 +27,6 @@ const client = new ApolloClient({
     link: link,
     cache: new InMemoryCache({addTypename: false})
 });
-
-client.query({query: gql`{ posts {title, body} }`}).then(console.log);
-
 
 ReactDOM.render(
     <ApolloProvider client={client}>
