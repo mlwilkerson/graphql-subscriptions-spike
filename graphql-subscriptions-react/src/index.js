@@ -15,10 +15,7 @@ import {gql} from "apollo-client-preset";
 const cable = ActionCable.createConsumer()
 const cableLink = new ActionCableLink({cable});
 
-const httpLink = new HttpLink({
-    uri: 'http://localhost:3000/graphql',
-    credentials: 'include'
-});
+const httpLink = new HttpLink({uri: 'http://localhost:3000/graphql'});
 
 const hasSubscriptionOperation = ({query: {definitions}}) => {
     return definitions.some(
@@ -33,8 +30,7 @@ const client = new ApolloClient({
     cache: new InMemoryCache({addTypename: false})
 });
 
-client.query({ query: gql`{ hello }` }).then(console.log);
-
+client.query({query: gql`{ posts {title, body} }`}).then(console.log);
 
 
 ReactDOM.render(

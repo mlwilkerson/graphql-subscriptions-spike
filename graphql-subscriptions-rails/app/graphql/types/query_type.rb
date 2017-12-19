@@ -9,8 +9,8 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve Queries::RetrievePost.new
   end
 
-  # field :posts do
-  #   type [!Types::PostType]
-  #   resolve Queries::RetrievePosts.new
-  # end
+  field :posts do
+    type types[Types::PostType]
+    resolve Queries::RetrievePosts.new
+  end
 end
