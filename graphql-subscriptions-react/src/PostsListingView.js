@@ -16,7 +16,7 @@ class PostsListingView extends Component {
             let func = post => (
                 <div className="" key={post.id}>
                     <h3>{post.title}</h3>
-                    <div className=""></div>
+                    <div className="">{post.body}</div>
                 </div>
             );
             content = this.props.data.posts.map(func)
