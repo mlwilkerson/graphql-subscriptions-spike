@@ -12,8 +12,5 @@
 //
 //= require rails-ujs
 //= require jquery
-//= require graphql-ruby-client
-//= require graphql
-//= require apollo-client
 //= require turbolinks
 //= require_tree .
