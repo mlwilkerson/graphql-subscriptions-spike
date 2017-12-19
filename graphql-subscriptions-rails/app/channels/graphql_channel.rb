@@ -6,6 +6,7 @@ class GraphqlChannel < ApplicationCable::Channel
   end
 
   def execute(data)
+    Rails.logger.info("GraphQL subscription channel execution! #{data}")
     query = data['query']
     variables = ensure_hash(data['variables'])
     operation_name = data['operationName']
@@ -15,7 +16,7 @@ class GraphqlChannel < ApplicationCable::Channel
       channel: self
     }
 
-    result = MySchema.execute(
+    result = GraphqlSubscriptionsRailsSchema.execute(
       query: query,
       context: context,
       variables: variables,
@@ -38,7 +39,7 @@ class GraphqlChannel < ApplicationCable::Channel
 
   def unsubscribed
     @subscription_ids.each do |sid|
-      CardsSchema.subscriptions.delete_subscription(sid)
+      GraphqlSubscriptionsRailsSchema.subscriptions.delete_subscription(sid)
     end
   end
 end
