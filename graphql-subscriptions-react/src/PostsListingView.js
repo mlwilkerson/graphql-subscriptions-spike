@@ -1,8 +1,70 @@
 import React, {Component} from "react";
 import {graphql} from 'react-apollo';
-import {gql} from "apollo-client-preset";
+import gql from 'graphql-tag';
 
-const withPostsData = graphql(gql`{ posts { id, title, body, comments {id, body} } }`);
+const postsSubscription = gql`
+    subscription postWasPublished {
+        publishedPost {
+            id
+            title
+            body
+            comments {
+                id
+                body
+            }
+        }
+    }
+`;
+
+const postsQuery = gql`
+{ 
+    posts { 
+        id
+        title
+        body
+        comments {
+            id
+            body
+        } 
+    } 
+}`;
+
+const subscriptionHandler = props => {
+    return {
+        subscribeToNewPosts: params => {
+            return props.posts.subscribeToMore({
+                document: postsSubscription,
+                variables: {
+                },
+                updateQuery: (prev, {subscriptionData}) => {
+                    console.info('Subscription fired!', subscriptionData);
+                    return prev;
+                    // if (!subscriptionData.data) {
+                    //     return prev;
+                    // }
+                    //
+                    // const publishedPost = subscriptionData.data.publishedPost;
+                    //
+                    // return Object.assign({}, prev, {
+                    //     entry: {
+                    //         comments: [publishedPost, ...prev.entry.posts]
+                    //     }
+                    // });
+                }
+            });
+        }
+    };
+};
+
+const options = ({params}) => ({
+    variables: {
+        // repoName: `${params.org}/${params.repoName}`
+    }
+});
+
+const withPostsData = graphql(postsQuery, {name: 'posts', options: options, props: subscriptionHandler});
+// const withPostsData = graphql(postsQuery);
+
 
 class PostsListingView extends Component {
 
