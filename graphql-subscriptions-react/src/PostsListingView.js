@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {graphql} from 'react-apollo';
 import {gql} from "apollo-client-preset";
 
-const withPostsData = graphql(gql`{ posts { id, title, body } }`);
+const withPostsData = graphql(gql`{ posts { id, title, body, comments {id, body} } }`);
 
 class PostsListingView extends Component {
 
