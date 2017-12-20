@@ -1,4 +1,5 @@
-GraphqlSubscriptionsRailsSchema = GraphQL::Schema.define do
+MySchema = GraphQL::Schema.define do
+
   use GraphQL::Backtrace
   use GraphQL::Subscriptions::ActionCableSubscriptions
 

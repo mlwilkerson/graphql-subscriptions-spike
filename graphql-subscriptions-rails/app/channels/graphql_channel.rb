@@ -16,7 +16,7 @@ class GraphqlChannel < ApplicationCable::Channel
       channel: self
     }
 
-    result = GraphqlSubscriptionsRailsSchema.execute(
+    result = MySchema.execute(
       query: query,
       context: context,
       variables: variables,
@@ -39,7 +39,7 @@ class GraphqlChannel < ApplicationCable::Channel
 
   def unsubscribed
     @subscription_ids.each do |sid|
-      GraphqlSubscriptionsRailsSchema.subscriptions.delete_subscription(sid)
+      MySchema.subscriptions.delete_subscription(sid)
     end
   end
 end

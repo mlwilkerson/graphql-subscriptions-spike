@@ -3,14 +3,15 @@
 namespace :db do
   desc 'Create a new blog post'
   task :create_post, %i[title body] => [:environment] do |_task, args|
-    Post.create! do |post|
+    post = Post.create! do |post|
       post.title = args.title
       post.body = args.body
     end
+    MySchema.subscriptions.trigger('postWasPublished', {}, post)
   end
 
   desc 'List posts'
-  task :list_posts => [:environment] do |_task, args|
+  task list_posts: [:environment] do |_task, _args|
     Post.all.each do |post|
       puts "Post: #{post.id}, title: #{post.title}"
     end

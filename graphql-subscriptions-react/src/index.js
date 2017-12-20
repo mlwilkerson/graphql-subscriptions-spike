@@ -10,23 +10,20 @@ import {HttpLink} from 'apollo-link-http';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import ActionCable from 'actioncable';
 import ActionCableLink from 'graphql-ruby-client/subscriptions/ActionCableLink';
-import {WebSocketLink} from 'apollo-link-ws';
 
 const cable = ActionCable.createConsumer('ws://localhost:3000/cable');
-const webNotificationsChannel = cable.subscriptions.create("WebNotificationsChannel", {
-    connected: () => {
-        console.log('Websocket connected!');
-    },
-    disconnected: () => {
-        console.log('Websocket disconnected!');
-    },
-    received: (data) => {
-        console.log(`Websocket received data:`, data);
-    }
-});
+// const webNotificationsChannel = cable.subscriptions.create("WebNotificationsChannel", {
+//     connected: () => {
+//         console.log('Websocket connected!');
+//     },
+//     disconnected: () => {
+//         console.log('Websocket disconnected!');
+//     },
+//     received: (data) => {
+//         console.log(`Websocket received data:`, data);
+//     }
+// });
 const cableLink = new ActionCableLink({cable});
-
-
 const httpLink = new HttpLink({uri: 'http://localhost:3000/graphql'});
 
 const hasSubscriptionOperation = ({query: {definitions}}) => {
@@ -35,7 +32,6 @@ const hasSubscriptionOperation = ({query: {definitions}}) => {
     )
 };
 
-// const link = ApolloLink.split(hasSubscriptionOperation, cableLink, httpLink);
 const link = ApolloLink.split(hasSubscriptionOperation, cableLink, httpLink);
 
 const client = new ApolloClient({
