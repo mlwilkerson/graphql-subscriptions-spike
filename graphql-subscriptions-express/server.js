@@ -39,12 +39,15 @@ const schema = require('./graphql/schema');
 // db.close()
 
 const app = express();
+
 app.use(helmet());
+
 app.use('/graphql', graphqlHTTP({
     schema: schema,
     // rootValue: root,
     graphiql: true,
 }));
+
 app.listen(4000);
 
-console.log('Running a GraphQL API server at localhost:4000/graphql');
+console.log('Running a GraphQL API server at http://localhost:4000/graphql');
