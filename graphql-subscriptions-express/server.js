@@ -1,22 +1,24 @@
 const express = require('express');
+const helmet = require('helmet');
 const graphqlHTTP = require('express-graphql');
 const {buildSchema} = require('graphql');
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(':memory:');
 const helloResolver = require('./resolvers/hello');
+const schema = require('./graphql/schema');
 
 
-// Construct a schema, using GraphQL schema language
-const schema = buildSchema(`
-  type Query {
-    hello: String
-  }
-`);
+// Construct a graphql, using GraphQL graphql language
+// const graphql = buildSchema(`
+//   type Query {
+//     hello: String
+//   }
+// `);
 
 // The root provides a resolver function for each API endpoint
-const root = {
-    hello: helloResolver
-};
+// const root = {
+//     hello: helloResolver
+// };
 
 
 // db.serialize(function () {
@@ -37,9 +39,10 @@ const root = {
 // db.close()
 
 const app = express();
+app.use(helmet());
 app.use('/graphql', graphqlHTTP({
     schema: schema,
-    rootValue: root,
+    // rootValue: root,
     graphiql: true,
 }));
 app.listen(4000);
