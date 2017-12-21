@@ -3,6 +3,7 @@ const graphqlHTTP = require('express-graphql');
 const {buildSchema} = require('graphql');
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(':memory:');
+const helloResolver = require('./resolvers/hello');
 
 
 // Construct a schema, using GraphQL schema language
@@ -14,9 +15,7 @@ const schema = buildSchema(`
 
 // The root provides a resolver function for each API endpoint
 const root = {
-    hello: () => {
-        return 'Hello world!';
-    },
+    hello: helloResolver
 };
 
 
