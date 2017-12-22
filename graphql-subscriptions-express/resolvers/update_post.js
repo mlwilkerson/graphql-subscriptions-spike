@@ -1,15 +1,14 @@
 const {Post} = require('../database/models');
 
-const updatePost = (value, {postInput}) => {
-    return Post.findById(postInput.id).then((post) => {
-        const options = {};
-        if (postInput.title) {
-            options.title = postInput.title;
+const updatePost = (value, {updatePostInput}) => {
+    return Post.findById(updatePostInput.id).then((post) => {
+        if (updatePostInput.title) {
+            post.title = updatePostInput.title;
         }
-        if (postInput.body) {
-            options.body = postInput.body;
+        if (updatePostInput.body) {
+            post.body = updatePostInput.body;
         }
-        return post.update(options);
+        return post.save();
     });
 };
 

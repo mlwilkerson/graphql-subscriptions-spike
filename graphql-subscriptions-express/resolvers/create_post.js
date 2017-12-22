@@ -1,7 +1,7 @@
 const {Post} = require('../database/models');
 
-const createPost = (value, { postInput }) => {
-    return Post.create({ title: postInput.title, body: postInput.body});
+const createPost = (value, { createPostInput }) => {
+    return Post.create({ title: createPostInput.title, body: createPostInput.body});
 };
 
 module.exports = createPost;
