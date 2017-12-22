@@ -14,8 +14,9 @@ app.use(helmet());
 
 app.use('/graphql', graphqlHTTP({
     schema: schema,
-    graphiql: true,
+    graphiql: false,
 }));
+
 
 app.listen(4000);
 

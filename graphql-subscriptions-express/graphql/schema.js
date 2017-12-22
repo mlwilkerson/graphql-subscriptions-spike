@@ -1,10 +1,13 @@
 const {GraphQLObjectType, GraphQLSchema, GraphQLString, GraphQLList} = require('graphql');
+
 const PostType = require('./types/post_type');
+const SubscriptionResultType = require('./types/subscription_result_type');
 
 const helloResolver = require('../resolvers/hello');
 const createPostResolver = require('../resolvers/create_post');
 const updatePostResolver = require('../resolvers/update_post');
 const retrievePostsResolver = require('../resolvers/retrieve_posts');
+const postsChangedResolver = require('../resolvers/posts_changed');
 
 const CreatePostInputType = require('./input_types/create_post_input_type');
 const UpdatePostInputType = require('./input_types/update_post_input_type');
@@ -46,9 +49,21 @@ const rootMutationType = new GraphQLObjectType({
     }
 });
 
+const rootSubscriptionType = new GraphQLObjectType({
+    name: 'RootSubscriptionType',
+    fields: {
+        postsChanged: {
+            type: SubscriptionResultType,
+            description: 'The post repository changed.',
+            resolve: postsChangedResolver
+        }
+    }
+});
+
 const schema = new GraphQLSchema({
     query: rootQueryType,
-    mutation: rootMutationType
+    mutation: rootMutationType,
+    subscription: rootSubscriptionType
 });
 
 module.exports = schema;
