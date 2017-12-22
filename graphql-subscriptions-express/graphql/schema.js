@@ -1,13 +1,13 @@
 const {GraphQLObjectType, GraphQLSchema, GraphQLString, GraphQLList} = require('graphql');
-const PostType = require('./post_type');
+const PostType = require('./types/post_type');
 
 const helloResolver = require('../resolvers/hello');
 const createPostResolver = require('../resolvers/create_post');
 const updatePostResolver = require('../resolvers/update_post');
 const retrievePostsResolver = require('../resolvers/retrieve_posts');
 
-const CreatePostInputType = require('./create_post_input_type');
-const UpdatePostInputType = require('./update_post_input_type');
+const CreatePostInputType = require('./input_types/create_post_input_type');
+const UpdatePostInputType = require('./input_types/update_post_input_type');
 
 
 const rootQueryType = new GraphQLObjectType({

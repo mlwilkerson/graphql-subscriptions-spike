@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('sqlite:../database.sqlite');
+const sequelize = new Sequelize('sqlite:database-sqlite.db');
 
 sequelize.authenticate()
     .then(() => {
