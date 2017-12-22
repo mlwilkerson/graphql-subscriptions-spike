@@ -1,10 +1,13 @@
 const {GraphQLObjectType, GraphQLSchema, GraphQLString, GraphQLList} = require('graphql');
+const PostType = require('./post_type');
+
 const helloResolver = require('../resolvers/hello');
 const createPostResolver = require('../resolvers/create_post');
+const updatePostResolver = require('../resolvers/update_post');
 const retrievePostsResolver = require('../resolvers/retrieve_posts');
-const PostType = require('./post_type');
-const CommentType = require('./comment_type');
-const PostInputType = require('./post_input_type');
+
+const CreatePostInputType = require('./create_post_input_type');
+const UpdatePostInputType = require('./update_post_input_type');
 
 
 const rootQueryType = new GraphQLObjectType({
@@ -28,9 +31,17 @@ const rootMutationType = new GraphQLObjectType({
             type: PostType,
             description: 'Creates a new post',
             args: {
-                postInput: { type: PostInputType }
+                createPostInput: { type: CreatePostInputType }
             },
             resolve: createPostResolver
+        },
+        updatePost: {
+            type: PostType,
+            description: 'Update an existing post',
+            args: {
+                updatePostInput: { type: UpdatePostInputType }
+            },
+            resolve: updatePostResolver
         }
     }
 });

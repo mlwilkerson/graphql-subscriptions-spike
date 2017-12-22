@@ -16,7 +16,7 @@ Comment.belongsTo(Post, {underscored: true});
 Post.hasMany(Comment, {as: 'comments', underscored: true});
 
 // force: true will drop the table if it already exists
-Post.sync({force: true}).then(() => {
+Post.sync({force: false}).then(() => {
     console.log('Created posts table.');
     // // Table created
     // return Post.create({
@@ -24,7 +24,7 @@ Post.sync({force: true}).then(() => {
     //     lastName: 'Hancock'
     // });
 });
-Comment.sync({force: true}).then(() => {
+Comment.sync({force: false}).then(() => {
     console.log('Created comments table.');
     // // Table created
     // return Post.create({
