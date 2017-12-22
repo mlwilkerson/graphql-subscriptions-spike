@@ -1,7 +1,10 @@
 const {GraphQLObjectType, GraphQLSchema, GraphQLString, GraphQLList} = require('graphql');
 const helloResolver = require('../resolvers/hello');
+const createPostResolver = require('../resolvers/create_post');
+const retrievePostsResolver = require('../resolvers/retrieve_posts');
 const PostType = require('./post_type');
 const CommentType = require('./comment_type');
+const PostInputType = require('./post_input_type');
 
 
 const rootQueryType = new GraphQLObjectType({
@@ -13,16 +16,28 @@ const rootQueryType = new GraphQLObjectType({
         },
         posts: {
             type: new GraphQLList(PostType),
-            resolve: () => {
-                return [
-                    {id: 1, title: 'This is it!', body: 'I can\'t take it any longer.'}
-                ]
-            }
+            resolve: retrievePostsResolver
         }
     }
 });
+
+const rootMutationType = new GraphQLObjectType({
+    name: 'RootMutationType',
+    fields: {
+        createPost: {
+            type: PostType,
+            description: 'Creates a new post',
+            args: {
+                postInput: { type: PostInputType }
+            },
+            resolve: createPostResolver
+        }
+    }
+});
+
 const schema = new GraphQLSchema({
-    query: rootQueryType
+    query: rootQueryType,
+    mutation: rootMutationType
 });
 
 module.exports = schema;
