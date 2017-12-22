@@ -1,10 +1,7 @@
-const {PubSub} = require('graphql-subscriptions');
 const {createServer} = require('http');
 const {SubscriptionServer} = require('subscriptions-transport-ws');
 const {execute, subscribe} = require('graphql');
 const schema = require('./graphql/schema');
-
-const pubsub = new PubSub();
 
 const WS_PORT = 5000;
 
@@ -15,13 +12,13 @@ const websocketServer = createServer((request, response) => {
 });
 
 // Bind it to port and start listening
-websocketServer.listen(WS_PORT, () => console.log(
-    `Websocket Server is now running on http://localhost:${WS_PORT}`
-));
+websocketServer.listen(WS_PORT, () => {});
 
 const subscriptionServer = SubscriptionServer.create({schema, execute, subscribe}, {
     server: websocketServer,
     path: '/graphql',
 });
+
+console.log(`Running a GraphQL API subscriptions WebSocket server at ws://localhost:${WS_PORT}/graphql`);
 
 module.exports = subscriptionServer;
