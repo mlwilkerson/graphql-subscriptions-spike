@@ -18,19 +18,9 @@ Post.hasMany(Comment, {as: 'comments', underscored: true});
 // force: true will drop the table if it already exists
 Post.sync({force: false}).then(() => {
     console.log('Created posts table.');
-    // // Table created
-    // return Post.create({
-    //     firstName: 'John',
-    //     lastName: 'Hancock'
-    // });
 });
 Comment.sync({force: false}).then(() => {
     console.log('Created comments table.');
-    // // Table created
-    // return Post.create({
-    //     firstName: 'John',
-    //     lastName: 'Hancock'
-    // });
 });
 
 module.exports = {
