@@ -23,7 +23,4 @@ Comment.sync({force: false}).then(() => {
     console.log('Created comments table.');
 });
 
-module.exports = {
-    Post: Post,
-    Comment: Comment
-};
+module.exports = {Post, Comment};

@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="10c9a608-c577-4fc5-9e5d-0e40d63cfdcf" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/graphql/resolvers/posts/create_post.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/graphql/resolvers/posts/post_added.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/graphql/resolvers/posts/retrieve_posts.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/graphql/schema.js" afterPath="$PROJECT_DIR$/graphql/schema.js" />
-      <change beforePath="$PROJECT_DIR$/pubsub/local_pubsub.js" afterPath="$PROJECT_DIR$/pubsub/local_pubsub.js" />
+      <change beforePath="$PROJECT_DIR$/database/models.js" afterPath="$PROJECT_DIR$/database/models.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,21 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="create_post.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/graphql/resolvers/posts/create_post.js">
+      <file leaf-file-name="models.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/models.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="post_added.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/graphql/resolvers/posts/post_added.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="1" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="494">
+              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -72,7 +58,6 @@
       <list>
         <option value="$PROJECT_DIR$/.nvmrc" />
         <option value="$PROJECT_DIR$/database/database.js" />
-        <option value="$PROJECT_DIR$/database/models.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/pubsub/resolvers.js" />
         <option value="$PROJECT_DIR$/package.json" />
@@ -81,6 +66,7 @@
         <option value="$PROJECT_DIR$/graphql/resolvers/posts/post_added.js" />
         <option value="$PROJECT_DIR$/graphql/schema.js" />
         <option value="$PROJECT_DIR$/graphql/resolvers/posts/create_post.js" />
+        <option value="$PROJECT_DIR$/database/models.js" />
       </list>
     </option>
   </component>
@@ -135,20 +121,12 @@
             <path>
               <item name="graphql-subscriptions-apollo-express" type="b2602c69:ProjectViewProjectNode" />
               <item name="graphql-subscriptions-apollo-express" type="462c0819:PsiDirectoryNode" />
-              <item name="graphql" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="graphql-subscriptions-apollo-express" type="b2602c69:ProjectViewProjectNode" />
               <item name="graphql-subscriptions-apollo-express" type="462c0819:PsiDirectoryNode" />
               <item name="graphql" type="462c0819:PsiDirectoryNode" />
-              <item name="resolvers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="graphql-subscriptions-apollo-express" type="b2602c69:ProjectViewProjectNode" />
-              <item name="graphql-subscriptions-apollo-express" type="462c0819:PsiDirectoryNode" />
-              <item name="graphql" type="462c0819:PsiDirectoryNode" />
-              <item name="resolvers" type="462c0819:PsiDirectoryNode" />
-              <item name="posts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="graphql-subscriptions-apollo-express" type="b2602c69:ProjectViewProjectNode" />
@@ -214,7 +192,7 @@
       <workItem from="1514006352422" duration="149000" />
       <workItem from="1514174726961" duration="611000" />
       <workItem from="1514304929103" duration="10961000" />
-      <workItem from="1514317717490" duration="4157000" />
+      <workItem from="1514317717490" duration="5064000" />
     </task>
     <task id="LOCAL-00001" summary="Initial revision.">
       <created>1513986915072</created>
@@ -272,11 +250,18 @@
       <option name="project" value="LOCAL" />
       <updated>1514321362011</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Refactoring resolvers to separate files.">
+      <created>1514322942353</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1514322942353</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19789000" />
+    <option name="totallyTimeSpent" value="20696000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="159" y="27" width="2145" height="1316" extended-state="0" />
@@ -318,7 +303,8 @@
     <MESSAGE value="Added mutation." />
     <MESSAGE value="Adding async/await usage." />
     <MESSAGE value="Subscriptions working now!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Subscriptions working now!" />
+    <MESSAGE value="Refactoring resolvers to separate files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring resolvers to separate files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -431,14 +417,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/models.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="3" lean-forward="false" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pubsub/resolvers.js" />
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -492,6 +470,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/models.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding />
         </state>
       </provider>
