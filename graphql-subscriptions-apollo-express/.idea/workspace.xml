@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="10c9a608-c577-4fc5-9e5d-0e40d63cfdcf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/database/models.js" afterPath="$PROJECT_DIR$/database/models.js" />
       <change beforePath="$PROJECT_DIR$/graphql/schema.js" afterPath="$PROJECT_DIR$/graphql/schema.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -37,8 +36,8 @@
       <file leaf-file-name="schema.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/graphql/schema.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+            <state relative-caret-position="418">
+              <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -203,7 +202,7 @@
       <workItem from="1514006158750" duration="156000" />
       <workItem from="1514006352422" duration="149000" />
       <workItem from="1514174726961" duration="611000" />
-      <workItem from="1514304929103" duration="5612000" />
+      <workItem from="1514304929103" duration="6302000" />
     </task>
     <task id="LOCAL-00001" summary="Initial revision.">
       <created>1513986915072</created>
@@ -233,11 +232,18 @@
       <option name="project" value="LOCAL" />
       <updated>1514312046843</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added mutation.">
+      <created>1514312208248</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1514312208248</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10283000" />
+    <option name="totallyTimeSpent" value="10973000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="301" y="27" width="2145" height="1316" extended-state="0" />
@@ -276,7 +282,8 @@
     <MESSAGE value="Initial revision." />
     <MESSAGE value="Checkpoint." />
     <MESSAGE value="Up and running." />
-    <option name="LAST_COMMIT_MESSAGE" value="Up and running." />
+    <MESSAGE value="Added mutation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added mutation." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -417,8 +424,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/graphql/schema.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state relative-caret-position="418">
+          <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
           <folding />
         </state>
       </provider>

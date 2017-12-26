@@ -36,8 +36,8 @@ const resolvers = {
         }
     },
     Mutation: {
-        createPost: (_, {title, body}) => {
-            const post = Post.create({title: title, body: body});
+        createPost: async (_, {title, body}) => {
+            const post = await Post.create({title: title, body: body});
             // pubsub.publish('postsChanged', {postsChanged: {id: post.id, change: 'CREATE'}});
             return post;
         },
