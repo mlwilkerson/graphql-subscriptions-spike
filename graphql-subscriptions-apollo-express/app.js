@@ -6,8 +6,6 @@ const schema = require('./graphql/schema');
 const database = require('./database/database');
 const helmet = require('helmet');
 
-// import async from 'asyncawait/async'
-// import await from 'asyncawait/await'
 
 
 const PORT = 4000;
@@ -21,6 +19,7 @@ app.use(bodyParser.json());
 app.use('/graphql', bodyParser.json(), graphqlExpress({schema}));
 app.get('/graphiql', graphiqlExpress({endpointURL: '/graphql'})); // if you want GraphiQL enabled
 app.listen(PORT, () => {
-    console.log(`GraphiQL is available at http://localhost:${PORT}/graphiql`);
+    console.log(`GraphQL API is available at http://localhost:${PORT}/graphql`);
+    console.log(`GraphiQL IDE is available at http://localhost:${PORT}/graphiql`);
 });
 
