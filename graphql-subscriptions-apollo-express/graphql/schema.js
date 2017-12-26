@@ -1,6 +1,7 @@
 const {makeExecutableSchema} = require('graphql-tools');
-const {Post} = require('../database/models');
-const {pubsub} = require('../pubsub/local_pubsub');
+const retrievePostsResolver = require('./resolvers/posts/retrieve_posts');
+const createPostResolver = require('./resolvers/posts/create_post');
+const postAddedResolver = require('./resolvers/posts/post_added');
 
 const typeDefs = `
     type Comment { 
@@ -34,23 +35,13 @@ const typeDefs = `
 
 const resolvers = {
     Query: {
-        posts: () => {
-            return Post.findAll({})
-        }
+        posts: retrievePostsResolver
     },
     Mutation: {
-        createPost: async (_, {title, body}) => {
-            const post = await Post.create({title: title, body: body});
-            pubsub.publish('postAdded', {postAdded: post});
-            return post;
-        },
+        createPost: createPostResolver
     },
     Subscription: {
-        postAdded: {
-            subscribe: (() => {
-                return pubsub.asyncIterator(['postAdded']);
-            })
-        }
+        postAdded: postAddedResolver
     }
 };
 
