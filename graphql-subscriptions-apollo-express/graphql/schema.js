@@ -1,8 +1,6 @@
 const {makeExecutableSchema} = require('graphql-tools');
 const {Post} = require('../database/models');
-// const async = require('asyncawait/async');
-// const await = require('asyncawait/await');
-
+const {pubsub} = require('../pubsub/local_pubsub');
 
 const typeDefs = `
     type Comment { 
@@ -27,6 +25,11 @@ const typeDefs = `
             body: String!
         ): Post
     }
+    
+    type Subscription {
+        postAdded: Post
+    }
+
 `;
 
 const resolvers = {
@@ -38,9 +41,16 @@ const resolvers = {
     Mutation: {
         createPost: async (_, {title, body}) => {
             const post = await Post.create({title: title, body: body});
-            // pubsub.publish('postsChanged', {postsChanged: {id: post.id, change: 'CREATE'}});
+            pubsub.publish('postAdded', {postAdded: post});
             return post;
         },
+    },
+    Subscription: {
+        postAdded: {
+            subscribe: (() => {
+                return pubsub.asyncIterator(['postAdded']);
+            })
+        }
     }
 };
 

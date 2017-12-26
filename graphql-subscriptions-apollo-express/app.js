@@ -3,9 +3,11 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const {graphiqlExpress, graphqlExpress} = require('apollo-server-express');
 const schema = require('./graphql/schema');
-// const database = require('./database/database');
+const database = require('./database/database');
 const helmet = require('helmet');
-
+const {execute, subscribe} = require('graphql');
+const {createServer} = require('http');
+const {SubscriptionServer} = require('subscriptions-transport-ws');
 
 
 const PORT = 4000;
@@ -13,21 +15,42 @@ const PORT = 4000;
 const app = express();
 const helperMiddleware = [
     bodyParser.json(),
-    bodyParser.text({ type: 'application/graphql' }),
+    bodyParser.text({type: 'application/graphql'}),
     (req, res, next) => {
         if (req.is('application/graphql')) {
-            req.body = { query: req.body };
+            req.body = {query: req.body};
         }
         next();
     }
 ];
 
-app.use(cors());
+app.use('*', cors({origin: `http://localhost:${PORT}`}));
 app.use(helmet());
 app.use('/graphql', ...helperMiddleware, graphqlExpress({schema}));
-app.get('/graphiql', graphiqlExpress({endpointURL: '/graphql'})); // if you want GraphiQL enabled
-app.listen(PORT, () => {
+app.get('/graphiql', graphiqlExpress({
+    endpointURL: '/graphql',
+    subscriptionsEndpoint: `ws://localhost:${PORT}/subscriptions`
+}));
+
+// Wrap the Express server
+const webSocketServer = createServer(app);
+webSocketServer.listen(PORT, () => {
+    console.log(`Apollo Server is now running on http://localhost:${PORT}`);
     console.log(`GraphQL API is available at http://localhost:${PORT}/graphql`);
     console.log(`GraphiQL IDE is available at http://localhost:${PORT}/graphiql`);
+    console.log(`Subscriptions are available at ws://localhost:${PORT}/subscriptions`);
+
+    // Set up the WebSocket for handling GraphQL subscriptions
+
+    const options = {
+        server: webSocketServer,
+        path: '/subscriptions',
+    };
+    new SubscriptionServer({execute, subscribe, schema}, options);
 });
+
+// app.listen(PORT, () => {
+//     console.log(`GraphQL API is available at http://localhost:${PORT}/graphql`);
+//     console.log(`GraphiQL IDE is available at http://localhost:${PORT}/graphiql`);
+// });
 
