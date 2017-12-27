@@ -1,2 +1,11 @@
 graphql-subscriptions-express/database-sqlite.db
+graphql-subscriptions-express/.idea
+graphql-subscriptions-express/node_modules
 
+graphql-subscriptions-apollo-express/database-sqlite.db
+graphql-subscriptions-apollo-express/.idea
+graphql-subscriptions-apollo-express/node_modules
+
+graphql-subscriptions-react/.idea
+graphql-subscriptions-react/node_modules
+            
