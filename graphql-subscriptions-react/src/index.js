@@ -8,10 +8,15 @@ import {ApolloClient} from 'apollo-client';
 import {ApolloProvider} from 'react-apollo';
 import {HttpLink} from 'apollo-link-http';
 import {InMemoryCache} from 'apollo-cache-inmemory';
-import ActionCable from 'actioncable';
-import ActionCableLink from 'graphql-ruby-client/subscriptions/ActionCableLink';
+// import ActionCable from 'actioncable';
+// import ActionCableLink from 'graphql-ruby-client/subscriptions/ActionCableLink';
+import {WebSocketLink} from 'apollo-link-ws';
+import { split } from 'apollo-link';
+import { getMainDefinition } from 'apollo-utilities';
 
-const cable = ActionCable.createConsumer('ws://localhost:3000/cable');
+const PORT = 3000;
+
+// const cable = ActionCable.createConsumer('ws://localhost:3000/cable');
 // const webNotificationsChannel = cable.subscriptions.create("WebNotificationsChannel", {
 //     connected: () => {
 //         console.log('Websocket connected!');
@@ -23,16 +28,27 @@ const cable = ActionCable.createConsumer('ws://localhost:3000/cable');
 //         console.log(`Websocket received data:`, data);
 //     }
 // });
-const cableLink = new ActionCableLink({cable});
-const httpLink = new HttpLink({uri: 'http://localhost:3000/graphql'});
+// const cableLink = new ActionCableLink({cable});
 
-const hasSubscriptionOperation = ({query: {definitions}}) => {
-    return definitions.some(
-        ({kind, operation}) => kind === 'OperationDefinition' && operation === 'subscription'
-    )
-};
+const webSocketLink = new WebSocketLink({
+    uri: `ws://localhost:${PORT}/subscriptions`,
+    options: {
+        reconnect: true
+    }
+});
+const httpLink = new HttpLink({uri: `http://localhost:${PORT}/graphql`});
 
-const link = ApolloLink.split(hasSubscriptionOperation, cableLink, httpLink);
+// using the ability to split links, you can send data to each link
+// depending on what kind of operation is being sent
+const link = split(
+    // split based on operation type
+    ({ query }) => {
+        const { kind, operation } = getMainDefinition(query);
+        return kind === 'OperationDefinition' && operation === 'subscription';
+    },
+    webSocketLink,
+    httpLink,
+);
 
 const client = new ApolloClient({
     link: link,
@@ -45,4 +61,5 @@ ReactDOM.render(
     </ApolloProvider>,
     document.getElementById('root')
 );
+
 registerServiceWorker();
