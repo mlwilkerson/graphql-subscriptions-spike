@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 import CommentsListingView from "./CommentsListingView";
+import PostEditorView from "./PostEditorView";
 
 // const postsSubscription = gql`subscription postAdded { id title body }`;
 
@@ -46,6 +47,7 @@ class PostsListingView extends Component {
         return (
             <div>
                 <h1>Posts</h1>
+                <PostEditorView/>
                 {content}
             </div>
         );
