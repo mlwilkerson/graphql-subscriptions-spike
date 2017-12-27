@@ -39,7 +39,7 @@ const typeDefs = `
     
     type Subscription {
         postAdded: Post,
-        commentAdded: Comment
+        commentAdded(postId: ID!): Comment
     }
 `;
 
