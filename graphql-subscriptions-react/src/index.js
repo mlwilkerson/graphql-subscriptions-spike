@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import {ApolloLink} from 'apollo-link';
+import {split} from 'apollo-link';
 import {ApolloClient} from 'apollo-client';
 import {ApolloProvider} from 'react-apollo';
 import {HttpLink} from 'apollo-link-http';
@@ -11,8 +11,7 @@ import {InMemoryCache} from 'apollo-cache-inmemory';
 // import ActionCable from 'actioncable';
 // import ActionCableLink from 'graphql-ruby-client/subscriptions/ActionCableLink';
 import {WebSocketLink} from 'apollo-link-ws';
-import { split } from 'apollo-link';
-import { getMainDefinition } from 'apollo-utilities';
+import {getMainDefinition} from 'apollo-utilities';
 
 const PORT = 3000;
 
@@ -42,8 +41,8 @@ const httpLink = new HttpLink({uri: `http://localhost:${PORT}/graphql`});
 // depending on what kind of operation is being sent
 const link = split(
     // split based on operation type
-    ({ query }) => {
-        const { kind, operation } = getMainDefinition(query);
+    ({query}) => {
+        const {kind, operation} = getMainDefinition(query);
         return kind === 'OperationDefinition' && operation === 'subscription';
     },
     webSocketLink,

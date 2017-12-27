@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="10c9a608-c577-4fc5-9e5d-0e40d63cfdcf" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/../graphql-subscriptions-react/src/components/PostsListingView.js" afterPath="$PROJECT_DIR$/../graphql-subscriptions-react/src/components/PostsListingView.js" />
+      <change beforePath="$PROJECT_DIR$/../graphql-subscriptions-react/src/containers/PostsPage.js" afterPath="$PROJECT_DIR$/../graphql-subscriptions-react/src/containers/PostsPage.js" />
       <change beforePath="$PROJECT_DIR$/../graphql-subscriptions-react/src/index.js" afterPath="$PROJECT_DIR$/../graphql-subscriptions-react/src/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -185,7 +188,7 @@
       <workItem from="1514317717490" duration="6569000" />
       <workItem from="1514327307735" duration="11000" />
       <workItem from="1514344072402" duration="6027000" />
-      <workItem from="1514390077618" duration="3894000" />
+      <workItem from="1514390077618" duration="4642000" />
     </task>
     <task id="LOCAL-00001" summary="Initial revision.">
       <created>1513986915072</created>
@@ -282,7 +285,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33315000" />
+    <option name="totallyTimeSpent" value="34063000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="250" y="27" width="2145" height="1318" extended-state="1" />
@@ -293,7 +296,7 @@
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32785466" sideWeight="0.501885" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32844827" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4100346" sideWeight="0.49811497" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4100346" sideWeight="0.49811497" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />

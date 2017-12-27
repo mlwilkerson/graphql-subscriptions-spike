@@ -1,30 +1,9 @@
 import React, {Component} from "react";
-// import {graphql} from 'react-apollo';
-// import gql from 'graphql-tag';
 import PostsListingView from "../components/PostsListingView";
 import ErrorBoundary from "../components/ErrorBoundary";
 
-
-// const postsSubscription = gql`subscription postAdded { id title body }`;
-
-// const postsQuery = gql`
-// {
-//     posts {
-//         id
-//         title
-//         body
-//         comments {
-//             id
-//             body
-//         }
-//     }
-// }`;
-
-
-// const withPostsData = graphql(postsQuery);
-
-
 class PostsPage extends Component {
+
 
     render() {
         return (
@@ -44,7 +23,5 @@ class PostsPage extends Component {
         );
     }
 }
-
-// export default withPostsData(PostsListingView);
 
 export default PostsPage;
