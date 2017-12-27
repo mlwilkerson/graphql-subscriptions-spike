@@ -48,9 +48,3 @@ webSocketServer.listen(PORT, () => {
     };
     new SubscriptionServer({execute, subscribe, schema}, options);
 });
-
-// app.listen(PORT, () => {
-//     console.log(`GraphQL API is available at http://localhost:${PORT}/graphql`);
-//     console.log(`GraphiQL IDE is available at http://localhost:${PORT}/graphiql`);
-// });
-

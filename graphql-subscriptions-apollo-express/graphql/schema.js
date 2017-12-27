@@ -2,6 +2,11 @@ const {makeExecutableSchema} = require('graphql-tools');
 const retrievePostsResolver = require('./resolvers/posts/retrieve_posts');
 const createPostResolver = require('./resolvers/posts/create_post');
 const postAddedResolver = require('./resolvers/posts/post_added');
+const retrieveCommentsResolver = require('./resolvers/comments/retrieve_comments');
+const createCommentResolver = require('./resolvers/comments/create_comment');
+const commentAddedResolver = require('./resolvers/comments/comment_added');
+
+
 
 const typeDefs = `
     type Comment { 
@@ -17,31 +22,39 @@ const typeDefs = `
     }
 
     type Query { 
-        posts: [Post] 
+        posts: [Post],
+        comments(postId: ID!): [Comment] 
     }
   
     type Mutation {
         createPost (
             title: String!, 
             body: String!
-        ): Post
+        ): Post,
+        createComment (
+            postId: ID!,
+            body: String! 
+        ): Comment
     }
     
     type Subscription {
-        postAdded: Post
+        postAdded: Post,
+        commentAdded: Comment
     }
-
 `;
 
 const resolvers = {
     Query: {
-        posts: retrievePostsResolver
+        posts: retrievePostsResolver,
+        comments: retrieveCommentsResolver
     },
     Mutation: {
-        createPost: createPostResolver
+        createPost: createPostResolver,
+        createComment: createCommentResolver
     },
     Subscription: {
-        postAdded: postAddedResolver
+        postAdded: postAddedResolver,
+        commentAdded: commentAddedResolver
     }
 };
 
