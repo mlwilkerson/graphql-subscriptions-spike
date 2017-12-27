@@ -1,20 +1,9 @@
 import React, {Component} from "react";
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
+import CommentsListingView from "./CommentsListingView";
 
-const postsSubscription = gql`
-    subscription postWasPublished {
-        publishedPost {
-            id
-            title
-            body
-            comments {
-                id
-                body
-            }
-        }
-    }
-`;
+const postsSubscription = gql`subscription postAdded { id title body }`;
 
 const postsQuery = gql`
 { 
@@ -29,40 +18,7 @@ const postsQuery = gql`
     } 
 }`;
 
-const subscriptionHandler = props => {
-    return {
-        subscribeToNewPosts: params => {
-            return props.posts.subscribeToMore({
-                document: postsSubscription,
-                variables: {
-                },
-                updateQuery: (prev, {subscriptionData}) => {
-                    console.info('Subscription fired!', subscriptionData);
-                    return prev;
-                    // if (!subscriptionData.data) {
-                    //     return prev;
-                    // }
-                    //
-                    // const publishedPost = subscriptionData.data.publishedPost;
-                    //
-                    // return Object.assign({}, prev, {
-                    //     entry: {
-                    //         comments: [publishedPost, ...prev.entry.posts]
-                    //     }
-                    // });
-                }
-            });
-        }
-    };
-};
 
-const optionsFn = ({params}) => ({
-    variables: {
-        // repoName: `${params.org}/${params.repoName}`
-    }
-});
-
-// const withPostsData = graphql(postsQuery, {name: 'posts', options: optionsFn, props: subscriptionHandler});
 const withPostsData = graphql(postsQuery);
 
 
@@ -80,6 +36,7 @@ class PostsListingView extends Component {
                     <div className="" key={post.id}>
                         <h3>{post.title}</h3>
                         <div className="">{post.body}</div>
+                        <CommentsListingView comments={post.comments}/>
                     </div>
                 );
                 content = this.props.data.posts.map(func)
