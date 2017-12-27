@@ -10,7 +10,7 @@ const {createServer} = require('http');
 const {SubscriptionServer} = require('subscriptions-transport-ws');
 
 
-const PORT = 4000;
+const PORT = 3000;
 
 const app = express();
 const helperMiddleware = [

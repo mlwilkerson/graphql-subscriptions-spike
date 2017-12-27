@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="10c9a608-c577-4fc5-9e5d-0e40d63cfdcf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/graphql/resolvers/comments/comment_added.js" afterPath="$PROJECT_DIR$/graphql/resolvers/comments/comment_added.js" />
-      <change beforePath="$PROJECT_DIR$/graphql/resolvers/comments/create_comment.js" afterPath="$PROJECT_DIR$/graphql/resolvers/comments/create_comment.js" />
-      <change beforePath="$PROJECT_DIR$/graphql/schema.js" afterPath="$PROJECT_DIR$/graphql/schema.js" />
+      <change beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,31 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="comment_added.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/graphql/resolvers/comments/comment_added.js">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create_comment.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/graphql/resolvers/comments/create_comment.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="schema.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/graphql/schema.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="741">
-              <caret line="45" column="19" lean-forward="true" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
+            <state relative-caret-position="456">
+              <caret line="24" column="2" lean-forward="true" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -89,12 +67,12 @@
         <option value="$PROJECT_DIR$/graphql/resolvers/posts/post_added.js" />
         <option value="$PROJECT_DIR$/graphql/resolvers/posts/create_post.js" />
         <option value="$PROJECT_DIR$/database/models.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/graphql/resolvers/comments/retrieve_comments_resolver.js" />
         <option value="$PROJECT_DIR$/graphql/resolvers/comments/retrieve_comments.js" />
         <option value="$PROJECT_DIR$/graphql/schema.js" />
         <option value="$PROJECT_DIR$/graphql/resolvers/comments/create_comment.js" />
         <option value="$PROJECT_DIR$/graphql/resolvers/comments/comment_added.js" />
+        <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
   </component>
@@ -242,7 +220,7 @@
       <workItem from="1514304929103" duration="10961000" />
       <workItem from="1514317717490" duration="6569000" />
       <workItem from="1514327307735" duration="11000" />
-      <workItem from="1514344072402" duration="5806000" />
+      <workItem from="1514344072402" duration="6027000" />
     </task>
     <task id="LOCAL-00001" summary="Initial revision.">
       <created>1513986915072</created>
@@ -321,11 +299,18 @@
       <option name="project" value="LOCAL" />
       <updated>1514347689448</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Using filtering with subscription.">
+      <created>1514350579403</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1514350579403</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28018000" />
+    <option name="totallyTimeSpent" value="28239000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="118" y="27" width="2145" height="1318" extended-state="0" />
@@ -370,7 +355,8 @@
     <MESSAGE value="Refactoring resolvers to separate files." />
     <MESSAGE value="Refactorings." />
     <MESSAGE value="Adding comments to the mix." />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding comments to the mix." />
+    <MESSAGE value="Using filtering with subscription." />
+    <option name="LAST_COMMIT_MESSAGE" value="Using filtering with subscription." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -494,14 +480,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="950">
-          <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/graphql/resolvers/posts/retrieve_posts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -542,6 +520,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/graphql/resolvers/comments/comment_added.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graphql/resolvers/comments/create_comment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/graphql/schema.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="741">
@@ -550,18 +544,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graphql/resolvers/comments/create_comment.js">
+    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/graphql/resolvers/comments/comment_added.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state relative-caret-position="456">
+          <caret line="24" column="2" lean-forward="true" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="2" />
           <folding />
         </state>
       </provider>
