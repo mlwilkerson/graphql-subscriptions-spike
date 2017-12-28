@@ -18,5 +18,7 @@
     "sequelize": "^4.28.6",
     "sqlite3": "^3.1.13",
     "subscriptions-transport-ws": "^0.9.4"
+  },
+  "devDependencies": {
   }
 }

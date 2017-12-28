@@ -18,3 +18,5 @@ The spike solution consists of two different server implementations:
 
 ### Web client
 
+The GraphQL client is a React webapp which utilizes Apollo Client 
+
