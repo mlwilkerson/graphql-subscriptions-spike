@@ -8,7 +8,8 @@
 
 This Node.js project expects that you are using Node Version Manager (nvm)
 to manage the Node.js runtime.  Go [here](https://github.com/creationix/nvm) 
-to install it.
+to install it. Currently this project is using Node.js version 9.3.0. Use `nvm install 9.3.0`
+to install this version of Node.js runtime and manage it through `nvm`.
 
 1. Set the Node.js runtime environment via nvm: `nvm use`
 1. Pull down dependencies via npm: `npm install`
