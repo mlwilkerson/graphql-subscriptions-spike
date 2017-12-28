@@ -5,17 +5,14 @@ import CommentsListingView from "./CommentsListingView";
 import PostEditorView from "./PostEditorView";
 
 const postsQuery = gql`
-{ 
-    posts { 
-        id
-        title
-        body
-        comments {
+    query retrievePostsQuery { 
+        posts { 
             id
+            title
             body
         } 
-    } 
-}`;
+    }
+`;
 
 const postsSubscription = gql`
     subscription onPostAddedSubscription {
@@ -36,27 +33,20 @@ class PostsListingView extends Component {
             document: postsSubscription,
             variables: {},
             updateQuery: (previous, {subscriptionData}) => {
-                console.log('updateQuery fired!');
                 if (!subscriptionData.data) {
                     return previous;
                 }
 
                 const newPost = subscriptionData.data.postAdded;
-                console.log('New post via subscription', newPost);
 
-                // if (!prev.channel.messages.find((msg) => msg.id === newMessage.id)) {
-                //     return Object.assign({}, prev, {
-                //         channel: Object.assign({}, prev.channel, {
-                //             messages: [...prev.channel.messages, newMessage],
-                //         })
-                //     });
-                // } else {
+                if (!previous.posts.find((post) => post.id === newPost.id)) {
+                    return Object.assign({}, previous, {posts: [newPost, ...previous.posts]});
+                } else {
                     return previous;
-                // }
+                }
             }
         });
     }
-
 
     render() {
         let content = (<div>&nbsp;</div>);

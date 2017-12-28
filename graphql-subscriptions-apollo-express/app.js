@@ -24,7 +24,6 @@ const helperMiddleware = [
     }
 ];
 
-// app.use('*', cors({origin: `http://localhost:3001`}));
 app.use('*', cors({
         origin: 'http://localhost:3001',
         optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -44,8 +43,6 @@ webSocketServer.listen(PORT, () => {
     console.log(`GraphQL API is available at http://localhost:${PORT}/graphql`);
     console.log(`GraphiQL IDE is available at http://localhost:${PORT}/graphiql`);
     console.log(`Subscriptions are available at ws://localhost:${PORT}/subscriptions`);
-
-    // Set up the WebSocket for handling GraphQL subscriptions
 
     const options = {
         server: webSocketServer,

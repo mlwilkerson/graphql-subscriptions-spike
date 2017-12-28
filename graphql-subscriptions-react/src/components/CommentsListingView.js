@@ -36,7 +36,7 @@ class CommentsListingView extends Component {
 
         return (
             <div>
-                <h4>Comments</h4>
+                <h5>Comments</h5>
                 {content}
             </div>
         );
