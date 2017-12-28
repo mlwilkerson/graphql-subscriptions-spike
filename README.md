@@ -13,8 +13,8 @@
 
 The spike solution consists of two different server implementations: 
 
-- [graphql-subscriptions-apollo-express](graphql-subscriptions-apollo-express/README.md): Node.js which uses Apollo Server and Express modules.
-- [graphql-subscriptions-rails](graphql-subscriptions-rails/README.md): Ruby on Rails 5.1 using the `graphql-ruby` gem.
+- [graphql-subscriptions-apollo-express](graphql-subscriptions-apollo-express): Node.js which uses Apollo Server and Express modules.
+- [graphql-subscriptions-rails](graphql-subscriptions-rails: Ruby on Rails 5.1 using the `graphql-ruby` gem.
 
 Note that each server implements the same functionality, so you only need to run
 one server for the spike solution.
@@ -24,5 +24,5 @@ one server for the spike solution.
 The GraphQL client is a React webapp which utilizes Apollo Client for the 
 GraphQL connectivity to the backend servers.
 
-[graphql-subscriptions-react](graphql-subscriptions-react/README.md)
+[graphql-subscriptions-react](graphql-subscriptions-react)
 
