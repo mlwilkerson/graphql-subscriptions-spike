@@ -1,7 +1,7 @@
 # GraphQL Subscriptions Spike Rails Server
 
 This Rails 5.1.4 server running on Ruby 2.4.2 demonstrates the use of ActionCable 
-for implementing a GraphQL subscriptions system.
+and `graphql-ruby` gem for implementing a GraphQL subscriptions system.
 
 ## Set up and configuration
 
@@ -11,7 +11,7 @@ Start a Redis 3.x server on port 6379:
 `docker run -p 127.0.0.1:6379:6379 --name graphql-subscriptions-redis -d redis:3`. Note that as of 
 Rails 5.1.4, only Redis 3.x will work; Redis 4.x will not work.
 
-You should see the following using `docker ps -a`:
+You should see something like the following using `docker ps -a`:
 
 ```bash
 CONTAINER ID  IMAGE    COMMAND                 CREATED        STATUS        PORTS                     NAMES
@@ -38,3 +38,4 @@ for building up the web assets.
 ```ruby
 ActionCable.server.broadcast 'web_notifications_channel', message: '<p>Hello Alyssa</p>'
 ```
+

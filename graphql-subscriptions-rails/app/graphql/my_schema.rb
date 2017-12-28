@@ -4,7 +4,7 @@ MySchema = GraphQL::Schema.define do
   use GraphQL::Subscriptions::ActionCableSubscriptions
   # tracer(MyCustomTracer)
 
-  # mutation(Types::MutationType)
   query(Types::QueryType)
+  mutation(Types::MutationType)
   subscription(Types::SubscriptionType)
 end

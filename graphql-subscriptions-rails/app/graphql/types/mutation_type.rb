@@ -4,11 +4,11 @@ Types::MutationType = GraphQL::ObjectType.define do
   name 'Mutation'
 
   field :createPost, Types::PostType do
-    argument :post, !InputTypes::PostInputType
+    argument :title, !types.String
+    argument :body, !types.String
+
     description 'Create a new blog post.'
-    resolve ->(t, args, c) {
-      Post.create!(args[:post])
-    }
-    # resolve Mutations::CreatePost.new
+
+    resolve Mutations::CreatePost.new
   end
 end

@@ -8,37 +8,41 @@ import {ApolloClient} from 'apollo-client';
 import {ApolloProvider} from 'react-apollo';
 import {HttpLink} from 'apollo-link-http';
 import {InMemoryCache} from 'apollo-cache-inmemory';
-// import ActionCable from 'actioncable';
-// import ActionCableLink from 'graphql-ruby-client/subscriptions/ActionCableLink';
+import ActionCable from 'actioncable';
+import ActionCableLink from 'graphql-ruby-client/subscriptions/ActionCableLink';
 import {WebSocketLink} from 'apollo-link-ws';
 import {getMainDefinition} from 'apollo-utilities';
 
 const PORT = 3000;
 
-// const cable = ActionCable.createConsumer('ws://localhost:3000/cable');
-// const webNotificationsChannel = cable.subscriptions.create("WebNotificationsChannel", {
-//     connected: () => {
-//         console.log('Websocket connected!');
-//     },
-//     disconnected: () => {
-//         console.log('Websocket disconnected!');
-//     },
-//     received: (data) => {
-//         console.log(`Websocket received data:`, data);
-//     }
-// });
-// const cableLink = new ActionCableLink({cable});
+let webSocketLink = undefined;
 
-const webSocketLink = new WebSocketLink({
-    uri: `ws://localhost:${PORT}/subscriptions`,
-    options: {
-        reconnect: true
-    }
-});
+if (process.env.REACT_APP_BACKEND === 'rails') {
+    const cable = ActionCable.createConsumer(`ws://localhost:${PORT}/subscriptions`);
+    cable.subscriptions.create('WebNotificationsChannel', {
+        connected: () => {
+            console.log('Websocket connected!');
+        },
+        disconnected: () => {
+            console.log('Websocket disconnected!');
+        },
+        received: (data) => {
+            console.log(`Websocket received data:`, data);
+        }
+    });
+    webSocketLink = new ActionCableLink({cable});
+} else  {
+    webSocketLink = new WebSocketLink({
+        uri: `ws://localhost:${PORT}/subscriptions`,
+        options: {
+            reconnect: true
+        }
+    });
+}
+
 const httpLink = new HttpLink({uri: `http://localhost:${PORT}/graphql`});
 
-// using the ability to split links, you can send data to each link
-// depending on what kind of operation is being sent
+// using the ability to split links, you can send data to each link depending on what kind of operation is being sent
 const link = split(
     // split based on operation type
     ({query}) => {
@@ -53,6 +57,8 @@ const client = new ApolloClient({
     link: link,
     cache: new InMemoryCache({addTypename: false})
 });
+
+
 
 ReactDOM.render(
     <ApolloProvider client={client}>

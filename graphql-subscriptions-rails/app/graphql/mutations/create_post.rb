@@ -2,9 +2,12 @@
 
 module Mutations
   class CreatePost < Mutations::MutationSupport
+
     def resolve(object, args, context)
-      post = Post.create!(args[:post])
-      post
+      Post.create! do |post|
+        post.title = args[:title]
+        post.body = args[:body]
+      end
     end
   end
 end
