@@ -19,6 +19,5 @@
     "sqlite3": "^3.1.13",
     "subscriptions-transport-ws": "^0.9.4"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
