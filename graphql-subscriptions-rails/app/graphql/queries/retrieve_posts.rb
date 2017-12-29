@@ -3,7 +3,7 @@
 module Queries
   class RetrievePosts < Queries::QuerySupport
     def resolve(object, args, context)
-      Post.all
+      Post.order(created_at: :desc).all
     end
   end
 end
