@@ -3,6 +3,5 @@
 Types::SubscriptionType = GraphQL::ObjectType.define do
   name 'Subscription'
 
-  field :queryCompleted, !types.String, 'A test subscription'
-  field :postWasPublished, !Types::PostType, 'A post was published to the blog.'
+  field :postAdded, !Types::PostType, 'A post was added to the blog.'
 end

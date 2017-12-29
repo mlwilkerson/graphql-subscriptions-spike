@@ -19,17 +19,6 @@ let webSocketLink = undefined;
 
 if (process.env.REACT_APP_BACKEND === 'rails') {
     const cable = ActionCable.createConsumer(`ws://localhost:${PORT}/subscriptions`);
-    cable.subscriptions.create('WebNotificationsChannel', {
-        connected: () => {
-            console.log('Websocket connected!');
-        },
-        disconnected: () => {
-            console.log('Websocket disconnected!');
-        },
-        received: (data) => {
-            console.log(`Websocket received data:`, data);
-        }
-    });
     webSocketLink = new ActionCableLink({cable});
 } else  {
     webSocketLink = new WebSocketLink({

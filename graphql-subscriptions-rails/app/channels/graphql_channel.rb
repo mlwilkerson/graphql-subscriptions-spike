@@ -5,8 +5,11 @@ class GraphqlChannel < ApplicationCable::Channel
     @subscription_ids = []
   end
 
+  # @param [Object] data
+  # @return [Object]
   def execute(data)
-    Rails.logger.info("GraphQL subscription channel execution! #{data}")
+    Rails.logger.info("GraphqlChannel#execute: #{data.inspect}")
+
     query = data['query']
     variables = ensure_hash(data['variables'])
     operation_name = data['operationName']
@@ -24,7 +27,7 @@ class GraphqlChannel < ApplicationCable::Channel
     )
 
     payload = {
-      result: result.subscription? ? nil : result.to_h,
+      result: result.subscription? ? {data: nil} : result.to_h,
       more: result.subscription?
     }
 
@@ -40,6 +43,18 @@ class GraphqlChannel < ApplicationCable::Channel
   def unsubscribed
     @subscription_ids.each do |sid|
       MySchema.subscriptions.delete_subscription(sid)
+    end
+  end
+
+  private
+
+  def ensure_hash(query_variables)
+    if query_variables.blank?
+      {}
+    elsif query_variables.is_a?(String)
+      JSON.parse(query_variables)
+    else
+      query_variables
     end
   end
 end
