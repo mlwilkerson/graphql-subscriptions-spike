@@ -25,17 +25,17 @@ const commentsSubscription = gql`
 `;
 
 
-const withCommentsData = graphql(commentsQuery, {options: ({postId}) => ({variables: {postId}})});
+const withCommentsData = graphql(commentsQuery, {options: ({post}) => ({variables: {postId: post.id}})});
 
 
 class CommentsListingView extends Component {
 
     componentWillMount() {
-        const postId = this.props.postId;
+        const {post} = this.props;
 
         this.props.data.subscribeToMore({
             document: commentsSubscription,
-            variables: {postId},
+            variables: {postId: post.id},
             updateQuery: (previous, {subscriptionData}) => {
                 if (!subscriptionData.data) {
                     return previous;
@@ -53,6 +53,7 @@ class CommentsListingView extends Component {
     }
 
     render() {
+        const {post} = this.props;
         let content = null;
         if (this.props.data) {
             if (this.props.data.loading) {
@@ -70,7 +71,7 @@ class CommentsListingView extends Component {
 
         return (
             <div>
-                <CommentEditorView postId={this.props.postId}/>
+                <CommentEditorView post={post}/>
                 <CSSTransitionGroup
                     transitionName="comments"
                     transitionEnterTimeout={500}
@@ -83,7 +84,7 @@ class CommentsListingView extends Component {
 }
 
 CommentsListingView.propTypes = {
-    postId: PropTypes.string.isRequired
+    post: PropTypes.object.isRequired
 };
 
 export default withCommentsData(CommentsListingView);

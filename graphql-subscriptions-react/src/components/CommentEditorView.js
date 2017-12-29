@@ -21,7 +21,7 @@ class CommentEditorView extends Component {
         super(props);
         this.onClick = this.onClick.bind(this);
         this.onChangeBodyInput = this.onChangeBodyInput.bind(this);
-        this.state = {postId: this.props.postId, body: ''};
+        this.state = {postId: this.props.post.id, body: ''};
     }
 
     onClick() {
@@ -60,7 +60,7 @@ class CommentEditorView extends Component {
 }
 
 CommentEditorView.propTypes = {
-    postId: PropTypes.string.isRequired
+    post: PropTypes.object.isRequired
 };
 
 export default withCreateCommentMutation(CommentEditorView);

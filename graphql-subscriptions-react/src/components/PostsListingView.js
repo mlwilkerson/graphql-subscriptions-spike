@@ -59,7 +59,7 @@ class PostsListingView extends Component {
                 content = (<div key={'error'}>An error occurred. {this.props.data.error}</div>);
             } else if (this.props.data.posts) {
                 let func = post => (
-                    <PostView post={post}/>
+                    <PostView post={post} key={post.id.toString()}/>
                 );
                 content = this.props.data.posts.map(func)
             }

@@ -8,8 +8,8 @@ class PostView extends Component {
         const {post} = this.props;
 
         return (
-            <div className="card-holder">
-                <div className="card" key={post.id}>
+            <div className="card-holder" key={post.id}>
+                <div className="card">
                     <div className="card-header">
                         <h4>{post.title}</h4>
                     </div>
@@ -17,7 +17,7 @@ class PostView extends Component {
                         <div className="">{post.body}</div>
                         <div className="comments-section">
                             <h5>Comments</h5>
-                            <CommentsListingView postId={post.id}/>
+                            <CommentsListingView post={post}/>
                         </div>
                     </div>
                 </div>
