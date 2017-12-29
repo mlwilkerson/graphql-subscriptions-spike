@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
-import CommentsListingView from "./CommentsListingView";
 import PostEditorView from "./PostEditorView";
 import {CSSTransitionGroup} from "react-transition-group";
 import './PostsListingView.css';
+import PostView from "./PostView";
 
 const postsQuery = gql`
     query retrievePostsQuery { 
@@ -59,11 +59,7 @@ class PostsListingView extends Component {
                 content = (<div key={'error'}>An error occurred. {this.props.data.error}</div>);
             } else if (this.props.data.posts) {
                 let func = post => (
-                    <div className="" key={post.id}>
-                        <h3>{post.title}</h3>
-                        <div className="">{post.body}</div>
-                        <CommentsListingView postId={post.id}/>
-                    </div>
+                    <PostView post={post}/>
                 );
                 content = this.props.data.posts.map(func)
             }

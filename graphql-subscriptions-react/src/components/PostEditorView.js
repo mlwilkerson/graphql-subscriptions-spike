@@ -46,24 +46,30 @@ class PostEditorView extends Component {
 
     render() {
         return (
-            <div>
-                <div className="formRow">
-                    <input type="text"
-                           className="form-control"
-                           value={this.state.title}
-                           onChange={this.onChangeTitleInput}/>
+            <div className="card">
+                <div className="card-header">
+                    <h4>Create a blog post</h4>
                 </div>
-                <div className="formRow">
+                <div className="card-body">
+                    <div className="formRow">
+                        <input type="text"
+                               className="form-control"
+                               value={this.state.title}
+                               onChange={this.onChangeTitleInput}
+                               placeholder="Post title"/>
+                    </div>
+                    <div className="formRow">
                     <textarea name="bodyInput"
-                          className="form-control"
-                          value={this.state.body}
-                          onChange={this.onChangeBodyInput}/>
+                              className="form-control"
+                              value={this.state.body}
+                              onChange={this.onChangeBodyInput}
+                              placeholder="Post body"/>
+                    </div>
                 </div>
-                <div className="formRow">
-                    <button className="btn btn-primary"
-                            onClick={this.onClick}>
-                        Save blog post
-                    </button>
+                <div className="card-footer">
+                    <div className="save-post-button">
+                        <button className="btn btn-primary" onClick={this.onClick}> Save</button>
+                    </div>
                 </div>
             </div>
         );

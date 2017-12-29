@@ -70,7 +70,6 @@ class CommentsListingView extends Component {
 
         return (
             <div>
-                <h5>Comments</h5>
                 <CommentEditorView postId={this.props.postId}/>
                 <CSSTransitionGroup
                     transitionName="comments"
