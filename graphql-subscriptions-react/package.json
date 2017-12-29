@@ -17,6 +17,7 @@
     "react-apollo": "^2.0.4",
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17",
+    "react-transition-group": "^1.2.1",
     "subscriptions-transport-ws": "^0.9.4"
   },
   "scripts": {

@@ -3,6 +3,8 @@ import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 import CommentEditorView from './CommentEditorView';
 import PropTypes from 'prop-types';
+import {CSSTransitionGroup} from "react-transition-group";
+import './CommentEditorView.css';
 
 const commentsQuery = gql`
     query CommentsForPost($postId: ID!) { 
@@ -54,12 +56,12 @@ class CommentsListingView extends Component {
         let content = null;
         if (this.props.data) {
             if (this.props.data.loading) {
-                content = (<div>Data loading! Please wait...</div>);
+                content = (<div key={'data-loading'}>Data loading! Please wait...</div>);
             } else if (this.props.data.error) {
-                content = (<div className="text-danger">An error occurred. {this.props.data.error}</div>);
+                content = (<div className="text-danger" key={'error'}>An error occurred. {this.props.data.error}</div>);
             } else if (this.props.data.comments) {
                 content = (
-                    <ul>
+                    <ul key={'comments-list'}>
                         {this.props.data.comments.map((comment) => (<li key={comment.id}>{comment.body}</li>))}
                     </ul>
                 )
@@ -70,14 +72,19 @@ class CommentsListingView extends Component {
             <div>
                 <h5>Comments</h5>
                 <CommentEditorView postId={this.props.postId}/>
-                {content}
+                <CSSTransitionGroup
+                    transitionName="comments"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={300}>
+                    {content}
+                </CSSTransitionGroup>
             </div>
         );
     }
 }
 
 CommentsListingView.propTypes = {
-    postId: PropTypes.number.isRequired
+    postId: PropTypes.string.isRequired
 };
 
 export default withCommentsData(CommentsListingView);

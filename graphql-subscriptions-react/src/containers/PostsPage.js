@@ -17,7 +17,7 @@ class PostsPage extends Component {
                     </ErrorBoundary>
                 </section>
                 <footer className="">
-
+                    &copy; 2017 - Sentera, LLC
                 </footer>
             </div>
         );

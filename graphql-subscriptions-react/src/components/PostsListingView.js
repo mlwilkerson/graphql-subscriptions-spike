@@ -3,6 +3,8 @@ import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 import CommentsListingView from "./CommentsListingView";
 import PostEditorView from "./PostEditorView";
+import {CSSTransitionGroup} from "react-transition-group";
+import './PostsListingView.css';
 
 const postsQuery = gql`
     query retrievePostsQuery { 
@@ -52,9 +54,9 @@ class PostsListingView extends Component {
         let content = (<div>&nbsp;</div>);
         if (this.props.data) {
             if (this.props.data.loading) {
-                content = (<div>Data loading! Please wait...</div>);
+                content = (<div key={'data-loading'}>Data loading! Please wait...</div>);
             } else if (this.props.data.error) {
-                content = (<div>An error occurred. {this.props.data.error}</div>);
+                content = (<div key={'error'}>An error occurred. {this.props.data.error}</div>);
             } else if (this.props.data.posts) {
                 let func = post => (
                     <div className="" key={post.id}>
@@ -71,7 +73,13 @@ class PostsListingView extends Component {
             <div>
                 <h1>Posts</h1>
                 <PostEditorView/>
-                {content}
+                <CSSTransitionGroup
+                    transitionName="posts"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={300}>
+                    {content}
+                </CSSTransitionGroup>
+
             </div>
         );
     }

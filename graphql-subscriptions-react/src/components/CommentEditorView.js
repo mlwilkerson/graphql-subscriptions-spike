@@ -60,7 +60,7 @@ class CommentEditorView extends Component {
 }
 
 CommentEditorView.propTypes = {
-    postId: PropTypes.number.isRequired
+    postId: PropTypes.string.isRequired
 };
 
 export default withCreateCommentMutation(CommentEditorView);

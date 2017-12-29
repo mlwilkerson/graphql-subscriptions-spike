@@ -1,0 +1,17 @@
+posts-enter {
+  opacity: 0.01;
+}
+
+.posts-enter.posts-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.posts-leave {
+  opacity: 1;
+}
+
+.posts-leave.posts-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
