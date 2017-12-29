@@ -11,4 +11,13 @@ Types::MutationType = GraphQL::ObjectType.define do
 
     resolve Mutations::CreatePost.new
   end
+
+  field :createComment, Types::CommentType do
+    argument :postId, !types.ID
+    argument :body, !types.String
+
+    description 'Create a new blog comment.'
+
+    resolve Mutations::CreateComment.new
+  end
 end
