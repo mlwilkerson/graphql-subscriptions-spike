@@ -8,7 +8,7 @@ module Mutations
         comment.post = post
         comment.body = args[:body]
       end
-      MySchema.subscriptions.trigger('commentAdded', {}, comment)
+      MySchema.subscriptions.trigger('commentAdded', { postId: comment.post.id }, comment)
       comment
     end
   end

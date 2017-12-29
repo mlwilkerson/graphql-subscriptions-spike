@@ -62,7 +62,7 @@ class PostEditorView extends Component {
                 <div className="formRow">
                     <button className="btn btn-primary"
                             onClick={this.onClick}>
-                        Save
+                        Save blog post
                     </button>
                 </div>
             </div>
