@@ -39,3 +39,18 @@ for building up the web assets.
 ActionCable.server.broadcast 'web_notifications_channel', message: '<p>Hello Alyssa</p>'
 ```
 
+
+## Running the server
+
+```
+Started GET "/subscriptions" for 127.0.0.1 at 2017-12-28 21:10:02 -0600
+Started GET "/subscriptions/" [WebSocket] for 127.0.0.1 at 2017-12-28 21:10:02 -0600
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+GraphqlChannel is transmitting the subscription confirmation
+GraphqlChannel#execute({"query"=>"subscription onPostAddedSubscription {\n  postAdded {\n    id\n    title\n    body\n  }\n}\n", "variables"=>{}, "operationName"=>"onPostAddedSubscription"})
+GraphqlChannel#execute: {"query"=>"subscription onPostAddedSubscription {\n  postAdded {\n    id\n    title\n    body\n  }\n}\n", "variables"=>{}, "operationName"=>"onPostAddedSubscription", "action"=>"execute"}
+GraphqlChannel transmitting {:result=>{:data=>nil}, :more=>true}
+GraphqlChannel is streaming from graphql-subscription:206f69ab-0a13-45cc-a7e1-dd399bb06681
+GraphqlChannel is streaming from graphql-event::postAdded:
+```
+
