@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 import CommentEditorView from './CommentEditorView';
+import PropTypes from 'prop-types';
 
 const commentsQuery = gql`
     query CommentsForPost($postId: ID!) { 
@@ -28,13 +29,16 @@ const withCommentsData = graphql(commentsQuery, {options: ({postId}) => ({variab
 class CommentsListingView extends Component {
 
     componentWillMount() {
+        const postId = this.props.postId;
+
         this.props.data.subscribeToMore({
             document: commentsSubscription,
-            variables: {postId: this.props.postId},
+            variables: {postId},
             updateQuery: (previous, {subscriptionData}) => {
                 if (!subscriptionData.data) {
                     return previous;
                 }
+
                 const newComment = subscriptionData.data.commentAdded;
 
                 if (!previous.comments.find((comment) => comment.id === newComment.id)) {
@@ -71,5 +75,9 @@ class CommentsListingView extends Component {
         );
     }
 }
+
+CommentsListingView.propTypes = {
+    postId: PropTypes.number.isRequired
+};
 
 export default withCommentsData(CommentsListingView);

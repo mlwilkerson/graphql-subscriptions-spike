@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 import './CommentEditorView.css';
+import PropTypes from "prop-types";
 
 const createComment = gql`
   mutation CreateCommentMutation($postId: ID!, $body: String!) {
@@ -57,5 +58,9 @@ class CommentEditorView extends Component {
         );
     }
 }
+
+CommentEditorView.propTypes = {
+    postId: PropTypes.number.isRequired
+};
 
 export default withCreateCommentMutation(CommentEditorView);
