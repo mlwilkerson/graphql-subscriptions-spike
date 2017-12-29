@@ -13,5 +13,5 @@ to install this version of Node.js runtime and manage it through `nvm`.
 
 1. Set the Node.js runtime environment via nvm: `nvm use`
 1. Pull down dependencies via npm: `npm install`
-1. Run the server: `npm start`
+1. Run the server: `npm run start`
 
