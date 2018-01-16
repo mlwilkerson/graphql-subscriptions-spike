@@ -189,6 +189,7 @@ DEPENDENCIES
   graphql
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
+  minitest (~> 5.8)
   puma (~> 3.7)
   rack-cors
   rails (~> 5.1.4)
