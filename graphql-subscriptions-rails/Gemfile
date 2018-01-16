@@ -33,6 +33,7 @@ gem 'redis', '~> 3.0'
 gem 'graphql'
 gem 'abstract_method', '~> 1.2', '>= 1.2.1'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'tzinfo-data'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

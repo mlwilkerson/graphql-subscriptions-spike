@@ -2,12 +2,18 @@ version: '3'
 services:
   redis:
     image: redis:3
-  web:
+  rails:
     build: .
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    command: bin/rails server --port 3000 --binding 0.0.0.0
+    environment:
+      RAILS_ENV: development
     volumes:
       - .:/app
+      - bundle:/bundle
     ports:
       - "3000:3000"
     depends_on:
       - redis
+volumes:
+  bundle:
+    driver: local
