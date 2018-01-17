@@ -1,18 +1,22 @@
-version: '3'
+version: "3.2"
 services:
+#  db:
+#    image: postgres:latest
   redis:
     image: redis:3
+    ports:
+      - "6379:6379"
   rails:
     build: .
     environment:
       RAILS_ENV: development
-#    volumes:
-#      - .:/app
-#      - bundle:/bundle
+    volumes:
+      - /tmp:/home/db
     ports:
       - "8080:8080"
     depends_on:
       - redis
-volumes:
-  bundle:
-    driver: local
+#      - db
+    links:
+      - redis
+#      - db

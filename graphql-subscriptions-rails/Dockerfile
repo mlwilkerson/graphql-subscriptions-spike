@@ -26,16 +26,18 @@ ADD rails-env.conf /etc/nginx/main.d/rails-env.conf
 ## Install dependencies:
 ## - build-essential: To ensure certain gems can be compiled
 ## - nodejs: Compile assets
-#RUN apt-get update && \
-#    apt-get install -qq -y build-essential nodejs libsqlite3-dev --fix-missing --no-install-recommends
+RUN apt-get update && \
+    apt-get install -qq -y build-essential nodejs libsqlite3-dev --fix-missing --no-install-recommends
 
 ## Set an environment variable to store where the app is installed to inside
 ## of the Docker image.
 ENV HOME /home/app
+ENV DB_DATA /home/db
 ENV BUNDLE_PATH /bundle
 ENV RAILS_ENV=development
 
 RUN mkdir -p $HOME
+RUN mkdir -p $DB_DATA
 
 ## This sets the context of where commands will be ran in and is documented
 ## on Docker's website extensively.
@@ -44,8 +46,6 @@ WORKDIR $HOME
 ## Ensure gems are cached and only get updated when they change. This will
 ## drastically increase build times when your gems do not change.
 ADD Gemfile* $HOME/
-
-
 RUN bundle install
 
 ## Copy in the application code from your work station at the current directory
@@ -56,7 +56,7 @@ ADD . $HOME
 RUN bundle exec rake db:create db:setup
 
 ## Expose a volume so that nginx will be able to read in assets in production.
-VOLUME ["$HOME/public"]
+#VOLUME ["$HOME/db"]
 
 
 # Clean up APT when done.
