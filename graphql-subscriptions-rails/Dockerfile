@@ -52,15 +52,5 @@ RUN bundle install
 ## over to the working directory.
 ADD . $HOME
 
-## Provide dummy data to Rails so it can pre-compile assets.
-RUN bundle exec rake db:create db:setup
-
-## Expose a volume so that nginx will be able to read in assets in production.
-#VOLUME ["$HOME/db"]
-
-
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-## The default command that gets ran will be to start the Rails server.
-#CMD bin/rails server --port 3000 --binding 0.0.0.0
