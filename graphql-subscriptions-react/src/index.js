@@ -13,23 +13,26 @@ import ActionCableLink from 'graphql-ruby-client/subscriptions/ActionCableLink';
 import {WebSocketLink} from 'apollo-link-ws';
 import {getMainDefinition} from 'apollo-utilities';
 
-const PORT = 3000;
+const EXPRESS_PORT = 3000;
+const RAILS_PORT = 8080;
 
 let webSocketLink = undefined;
+let httpLink = undefined;
 
 if (process.env.REACT_APP_BACKEND === 'rails') {
-    const cable = ActionCable.createConsumer(`ws://localhost:${PORT}/subscriptions`);
+    const cable = ActionCable.createConsumer(`ws://localhost:${RAILS_PORT}/subscriptions`);
     webSocketLink = new ActionCableLink({cable});
+    httpLink = new HttpLink({uri: `http://localhost:${RAILS_PORT}/graphql`});
 } else  {
     webSocketLink = new WebSocketLink({
-        uri: `ws://localhost:${PORT}/subscriptions`,
+        uri: `ws://localhost:${EXPRESS_PORT}/subscriptions`,
         options: {
             reconnect: true
         }
     });
+    httpLink = new HttpLink({uri: `http://localhost:${EXPRESS_PORT}/graphql`});
 }
 
-const httpLink = new HttpLink({uri: `http://localhost:${PORT}/graphql`});
 
 // using the ability to split links, you can send data to each link depending on what kind of operation is being sent
 const link = split(
