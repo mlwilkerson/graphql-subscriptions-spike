@@ -10,12 +10,24 @@ ENV HOME /root
 # Use baseimage-docker's init process.
 CMD ["/sbin/my_init"]
 
+# Expose Nginx HTTP service
+EXPOSE 8080
+
+# Start Nginx / Passenger
+RUN rm -f /etc/service/nginx/down
+
+# Remove the default site
+RUN rm /etc/nginx/sites-enabled/default
+
+# Add the nginx site and config
+ADD webapp.conf /etc/nginx/sites-enabled/webapp.conf
+ADD rails-env.conf /etc/nginx/main.d/rails-env.conf
 
 ## Install dependencies:
 ## - build-essential: To ensure certain gems can be compiled
 ## - nodejs: Compile assets
-RUN apt-get update && \
-    apt-get install -qq -y build-essential nodejs libsqlite3-dev --fix-missing --no-install-recommends
+#RUN apt-get update && \
+#    apt-get install -qq -y build-essential nodejs libsqlite3-dev --fix-missing --no-install-recommends
 
 ## Set an environment variable to store where the app is installed to inside
 ## of the Docker image.
@@ -46,11 +58,9 @@ RUN bundle exec rake db:create db:setup
 ## Expose a volume so that nginx will be able to read in assets in production.
 VOLUME ["$HOME/public"]
 
-EXPOSE 3000
-
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ## The default command that gets ran will be to start the Rails server.
-CMD bin/rails server --port 3000 --binding 0.0.0.0
+#CMD bin/rails server --port 3000 --binding 0.0.0.0

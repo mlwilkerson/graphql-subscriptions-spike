@@ -4,14 +4,13 @@ services:
     image: redis:3
   rails:
     build: .
-    command: bin/rails server --port 3000 --binding 0.0.0.0
     environment:
       RAILS_ENV: development
-    volumes:
-      - .:/app
-      - bundle:/bundle
+#    volumes:
+#      - .:/app
+#      - bundle:/bundle
     ports:
-      - "3000:3000"
+      - "8080:8080"
     depends_on:
       - redis
 volumes:
