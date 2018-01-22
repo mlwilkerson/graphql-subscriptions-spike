@@ -26,8 +26,8 @@ services:
       RAILS_ENV: development
     ports:
       - "8080:8080"
-#    volumes:
-#      - /tmp:/home/db
+    volumes:
+      - log:/home/app/log
     depends_on:
       - redis
       - mysql
@@ -39,7 +39,8 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile-resque
-#    command: ["bundle", "exec", "rake", "resque:work", "QUEUE=*"]
+    volumes:
+      - log:/usr/src/app/log
     restart: unless-stopped
     environment:
       RAILS_ENV: development
@@ -52,3 +53,6 @@ services:
 
 volumes:
   mysql-data:
+    driver: local
+  log:
+    driver: local

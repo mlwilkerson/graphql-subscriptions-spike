@@ -3,12 +3,19 @@ import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 import './PostEditorView.css';
 
+// const createPost = gql`
+//   mutation CreatePostMutation($title: String!, $body: String!) {
+//     createPost(title: $title, body: $body) {
+//       id
+//       title
+//       body
+//     }
+//   }
+// `;
 const createPost = gql`
   mutation CreatePostMutation($title: String!, $body: String!) {
-    createPost(title: $title, body: $body) {
-      id
-      title
-      body
+    createPostAsync(title: $title, body: $body) {
+      process_id
     }
   }
 `;
@@ -30,6 +37,7 @@ class PostEditorView extends Component {
             variables: {title: this.state.title, body: this.state.body}
         };
         this.props.mutate(options).then(({data}) => {
+            console.info(data);
             this.setState({body: '', title: ''});
         }).catch((error) => {
             console.error('Error with create post mutation.', error);

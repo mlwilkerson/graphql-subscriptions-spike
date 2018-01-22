@@ -4,11 +4,18 @@ import gql from 'graphql-tag';
 import './CommentEditorView.css';
 import PropTypes from "prop-types";
 
+// const createComment = gql`
+//   mutation CreateCommentMutation($postId: ID!, $body: String!) {
+//     createComment(postId: $postId, body: $body) {
+//       id
+//       body
+//     }
+//   }
+// `;
 const createComment = gql`
   mutation CreateCommentMutation($postId: ID!, $body: String!) {
-    createComment(postId: $postId, body: $body) {
-      id
-      body
+    createCommentAsync(postId: $postId, body: $body) {
+      process_id
     }
   }
 `;
@@ -29,6 +36,7 @@ class CommentEditorView extends Component {
             variables: {postId: this.state.postId, body: this.state.body}
         };
         this.props.mutate(options).then(({data}) => {
+            console.info(data);
             this.setState({body: ''});
         }).catch((error) => {
             console.error('Error with create comment mutation.', error);
