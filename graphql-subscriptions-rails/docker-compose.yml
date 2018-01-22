@@ -1,22 +1,54 @@
 version: "3.2"
 services:
-#  db:
-#    image: postgres:latest
+
+  mysql:
+    image: mysql:latest
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
   redis:
     image: redis:3
+    restart: unless-stopped
     ports:
       - "6379:6379"
+
   rails:
-    build: .
+    build:
+      context: ./
+      dockerfile: Dockerfile-rails
+    restart: unless-stopped
     environment:
       RAILS_ENV: development
-    volumes:
-      - /tmp:/home/db
     ports:
       - "8080:8080"
+#    volumes:
+#      - /tmp:/home/db
     depends_on:
       - redis
-#      - db
+      - mysql
     links:
       - redis
-#      - db
+      - mysql
+
+  resque:
+    build:
+      context: ./
+      dockerfile: Dockerfile-resque
+#    command: ["bundle", "exec", "rake", "resque:work", "QUEUE=*"]
+    restart: unless-stopped
+    environment:
+      RAILS_ENV: development
+    depends_on:
+      - redis
+      - mysql
+    links:
+      - redis
+      - mysql
+
+volumes:
+  mysql-data:

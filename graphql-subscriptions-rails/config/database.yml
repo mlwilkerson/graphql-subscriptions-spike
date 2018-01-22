@@ -1,16 +1,32 @@
-default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
-
 development:
-  <<: *default
-  database: /home/db/development.sqlite3
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: graphql_subscriptions_development
+  pool: 5
+  username: root
+  password: root
+  host: mysql
 
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
 test:
-  <<: *default
-  database: /home/db/test.sqlite3
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: graphql_subscriptions_test
+  pool: 5
+  username: root
+  password: root
+  host: mysql
 
 production:
-  <<: *default
-  database: /home/db/production.sqlite3
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: graphql_subscriptions_production
+  pool: 5
+  username: root
+  password: root
+  host: mysql

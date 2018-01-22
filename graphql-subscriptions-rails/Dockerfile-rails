@@ -27,17 +27,15 @@ ADD rails-env.conf /etc/nginx/main.d/rails-env.conf
 ## - build-essential: To ensure certain gems can be compiled
 ## - nodejs: Compile assets
 RUN apt-get update && \
-    apt-get install -qq -y build-essential nodejs libsqlite3-dev --fix-missing --no-install-recommends
+    apt-get install -qq -y build-essential nodejs mysql-client libmysqlclient-dev --fix-missing --no-install-recommends
 
 ## Set an environment variable to store where the app is installed to inside
 ## of the Docker image.
 ENV HOME /home/app
-ENV DB_DATA /home/db
 ENV BUNDLE_PATH /bundle
 ENV RAILS_ENV=development
 
-RUN mkdir -p $HOME
-RUN mkdir -p $DB_DATA
+#RUN mkdir -p $HOME
 
 ## This sets the context of where commands will be ran in and is documented
 ## on Docker's website extensively.
@@ -51,6 +49,7 @@ RUN bundle install
 ## Copy in the application code from your work station at the current directory
 ## over to the working directory.
 ADD . $HOME
+RUN chown -R app:app $HOME
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
