@@ -3,15 +3,6 @@ import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 import './PostEditorView.css';
 
-// const createPost = gql`
-//   mutation CreatePostMutation($title: String!, $body: String!) {
-//     createPost(title: $title, body: $body) {
-//       id
-//       title
-//       body
-//     }
-//   }
-// `;
 const createPost = gql`
   mutation CreatePostMutation($title: String!, $body: String!) {
     createPostAsync(title: $title, body: $body) {

@@ -4,14 +4,6 @@ import gql from 'graphql-tag';
 import './CommentEditorView.css';
 import PropTypes from "prop-types";
 
-// const createComment = gql`
-//   mutation CreateCommentMutation($postId: ID!, $body: String!) {
-//     createComment(postId: $postId, body: $body) {
-//       id
-//       body
-//     }
-//   }
-// `;
 const createComment = gql`
   mutation CreateCommentMutation($postId: ID!, $body: String!) {
     createCommentAsync(postId: $postId, body: $body) {
