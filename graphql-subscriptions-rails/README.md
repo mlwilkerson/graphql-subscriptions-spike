@@ -12,7 +12,7 @@ with this implementation.
 
 
 
-## Running the services
+## Running the Docker services
 
 - Change directory to the root of the Rails application: `graphql-subscriptions-spike/graphql-subscriptions-rails`
 - Launch all the Docker containers with Docker Compose: `docker-compose up`
@@ -67,21 +67,67 @@ rails_1  | - [Fixed in 5.1.11] [URGENT] Users with write access to an applicatio
 - Start the React application to bring up the web UI. 
 See [here](https://github.com/SenteraLLC/graphql-subscriptions-spike/tree/master/graphql-subscriptions-react) for more details.
 
-## Shutting down the services
+## Viewing logs from the Rails and Resque containers
 
-- Ctrl-C to exit the interactive console. 
+1. Execute `docker volume ls` to get a listing of all volume mounts. There may be a lot of entries here. 
+Use `docker volume prune` to clean up abandoned volume mounts. Here is a fragment of a listing with our 
+containers volume mounts listed.
 
-```
-^CGracefully stopping... (press Ctrl+C again to force)
-Stopping graphqlsubscriptionsrails_rails_1 ... done
-Stopping graphqlsubscriptionsrails_redis_1 ... done
-```
+    ```
+    DRIVER              VOLUME NAME
+    local               d280a598540823b8b302591f32f0467d29081a788af48e8010e7f510ef6f48e7
+    local               graphqlsubscriptionsrails_log
+    local               graphqlsubscriptionsrails_mysql-data
+    ```
 
-- Tear down the Docker containers and network with Docker Compose: `docker-compose down`
+1. Execute `docker volume inspect graphqlsubscriptionsrails_log` to inspect the details of the 
+**graphqlsubscriptionsrails_log** volume. You are interested in the _Mountpoint_ value, as that is
+where log files are being written on the host:
 
-```
-Removing graphqlsubscriptionsrails_rails_1 ... done
-Removing graphqlsubscriptionsrails_redis_1 ... done
-Removing network graphqlsubscriptionsrails_default
-```
+    ```
+    [
+        {
+            "CreatedAt": "2018-01-22T22:27:28-06:00",
+            "Driver": "local",
+            "Labels": {
+                "com.docker.compose.project": "graphqlsubscriptionsrails",
+                "com.docker.compose.volume": "log"
+            },
+            "Mountpoint": "/var/lib/docker/volumes/graphqlsubscriptionsrails_log/_data",
+            "Name": "graphqlsubscriptionsrails_log",
+            "Options": {},
+            "Scope": "local"
+        }
+    ]
+    ```
+
+1. Tail the Rails container log: `sudo tail -f /var/lib/docker/volumes/graphqlsubscriptionsrails_log/_data/development.log`
+
+1. Tail the Resque rake container log: `sudo tail -f /var/lib/docker/volumes/graphqlsubscriptionsrails_log/_data/development_resque.log`
+
+
+
+## Shutting down the Docker services
+
+1. Press `Ctrl-C` to exit the interactive console from `docker-compose up`. 
+
+    ```
+    ^CGracefully stopping... (press Ctrl+C again to force)
+    Stopping graphqlsubscriptionsrails_rails_1  ... done
+    Stopping graphqlsubscriptionsrails_resque_1 ... done
+    Stopping graphqlsubscriptionsrails_redis_1  ... done
+    Stopping graphqlsubscriptionsrails_mysql_1  ... done
+    ```
+
+1. Tear down the Docker containers and network with Docker Compose: `docker-compose down`
+    
+    ```
+    Stopping graphqlsubscriptionsrails_rails_run_1 ... done
+    Removing graphqlsubscriptionsrails_rails_run_1 ... done
+    Removing graphqlsubscriptionsrails_rails_1     ... done
+    Removing graphqlsubscriptionsrails_resque_1    ... done
+    Removing graphqlsubscriptionsrails_redis_1     ... done
+    Removing graphqlsubscriptionsrails_mysql_1     ... done
+    Removing network graphqlsubscriptionsrails_default
+    ```
 
