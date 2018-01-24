@@ -27,7 +27,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - /tmp/development.log:/home/app/log/development.log
+      - rails-log:/home/app/log
     depends_on:
       - redis
       - mysql
@@ -40,7 +40,7 @@ services:
       context: ./
       dockerfile: Dockerfile-resque
     volumes:
-      - /tmp/development_resque.log:/usr/src/app/log/development_resque.log
+      - resque-log:/usr/src/app/log
     restart: unless-stopped
     environment:
       RAILS_ENV: development
@@ -53,4 +53,8 @@ services:
 
 volumes:
   mysql-data:
+    driver: local
+  rails-log:
+    driver: local
+  resque-log:
     driver: local
